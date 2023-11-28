@@ -3,6 +3,7 @@ const cookieParser = require("cookie-parser");
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+
 require("dotenv").config();
 
 // My routes
@@ -11,6 +12,8 @@ const userRoutes = require("./routes/userRoute");
 const petRoutes = require("./routes/petRoute");
 
 const app = express();
+const server = http.createServer(app);
+// const io = new Server(server);
 
 // connecting to database...
 const URI = process.env.MONGO_URI;
@@ -32,12 +35,13 @@ app.use(cors({ credentials: true }));
 // My Routes
 app.use("/api", authRoutes);
 app.use("/api", userRoutes);
-// app.use("/api", petRoutes);
+app.use("/api", petRoutes);
+
 
 app.get("/", (req, res) => {
   res.send("<h1>Petopia hei</h1>");
 });
 
-app.listen("8000", () => {
+server.listen("8000", () => {
   console.log("SERVER IS UP AND RUNNING");
 });

@@ -5,24 +5,29 @@ const {
   isSignedIn,
   isAuthenticated,
 } = require("../controllers/authController");
-const { getUserById, getUser } = require("../controllers/userController");
+const {
+  getUserById,
+  getUser,
+  addPetToFavorites,
+  removePetFromFavorites,
+} = require("../controllers/userController");
 
 router.param("userId", getUserById);
 
-router.get("/user/:userId", isSignedIn, getUser);
+router.get("/user/:userId", isSignedIn, isAuthenticated, getUser);
 
-router.get(
-  "/users/:userId/favouritePets",
+router.post(
+  "/user/:userId/favorite-pets",
   isSignedIn,
-  isAuthenticated
-  // getUserFavoritePets
+  isAuthenticated,
+  addPetToFavorites
 );
 
-// router.get(
-//   "/orders/user/:userId",
-//   isSignedIn,
-//   isAuthenticated,
-//   getUserPurchaseList
-// );
+router.delete(
+  "/users/:userId/favorite-pets/:petId",
+  isSignedIn,
+  isAuthenticated,
+  removePetFromFavorites
+);
 
 module.exports = router;

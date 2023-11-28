@@ -6,17 +6,20 @@ const petSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    breed: { type: String },
-    age: { type: Number },
-    description: { type: String },
+    animalType: { type: String, required: true },
+    breed: { type: String, required: true },
+    dob: { type: Date, required: true },
+    description: { type: String, required: true },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+      required: true,
     }, // Reference to the user who owns the pet
     favoriteOf: {
       type: Number,
       default: 0,
     },
+    images: [{ type: String, required: true }],
   },
   { timestamps: true }
 );
