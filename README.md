@@ -25,6 +25,7 @@ Petopia is a backend application built on Node.js and Express.js to manage user 
 2. Access the application at `http://localhost:8000` (or respective port set in environment variables).
 
 ## Project Structure
+```
 ├── controllers/
 │ ├── authController.js
 │ ├── petController.js
@@ -39,6 +40,7 @@ Petopia is a backend application built on Node.js and Express.js to manage user 
 ├── .env
 ├── app.js
 └── README.md
+```
 
 
 ## Environment Variables
