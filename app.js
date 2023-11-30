@@ -31,7 +31,14 @@ mongoose
 // middlewares
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true, // if you're using cookies or authentication
+  })
+);
+
+
 
 // My Routes
 app.use("/api", authRoutes);
