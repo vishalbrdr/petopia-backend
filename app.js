@@ -1,10 +1,12 @@
+require("dotenv").config();
+
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const http = require("http");
 
-require("dotenv").config();
 
 // My routes
 const authRoutes = require("./routes/authRoute");
@@ -37,11 +39,12 @@ app.use("/api", authRoutes);
 app.use("/api", userRoutes);
 app.use("/api", petRoutes);
 
-
 app.get("/", (req, res) => {
   res.send("<h1>Petopia hei</h1>");
 });
 
-server.listen("8000", () => {
-  console.log("SERVER IS UP AND RUNNING");
+const PORT = process.env.PORT || 8000
+
+server.listen(PORT, () => {
+  console.log("SERVER IS UP AND RUNNING AT PORT:",PORT);
 });
