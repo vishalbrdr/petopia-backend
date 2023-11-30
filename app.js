@@ -7,7 +7,6 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const http = require("http");
 
-
 // My routes
 const authRoutes = require("./routes/authRoute");
 const userRoutes = require("./routes/userRoute");
@@ -32,7 +31,7 @@ mongoose
 // middlewares
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(cors({ credentials: true }));
+app.use(cors());
 
 // My Routes
 app.use("/api", authRoutes);
@@ -43,8 +42,8 @@ app.get("/", (req, res) => {
   res.send("<h1>Petopia hei</h1>");
 });
 
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT || 8000;
 
 server.listen(PORT, () => {
-  console.log("SERVER IS UP AND RUNNING AT PORT:",PORT);
+  console.log("SERVER IS UP AND RUNNING AT PORT:", PORT);
 });
